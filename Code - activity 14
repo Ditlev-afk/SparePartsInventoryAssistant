@@ -1,0 +1,44 @@
+Console.Write("Enter username:");
+string username = Console.ReadLine();
+
+Console.Write("Enter password:");
+string password = Console.ReadLine();
+
+Console.Write("Enter user ID:");
+int userId = Convert.ToInt32(Console.ReadLine());
+
+// Is userID admin?
+bool userIsAdmin = userId > 56565;
+
+// Is username valid? 
+bool usernameValid = username.Length >= 3;
+
+// Does password contain special characters 
+bool containsSpecialChar = password.Contains("$") || password.Contains("|") || password.Contains("@");
+
+// Is password lenght good? 
+bool passwordValid;
+if (userIsAdmin)
+{ 
+    passwordValid = containsSpecialChar && password.Length >= 20;
+}
+else
+{
+    passwordValid = containsSpecialChar && password.Length >= 16;
+}
+
+// Output
+if (usernameValid && passwordValid)
+{
+Console.Write("You are logged in. Welcome!");
+}
+else
+{
+    if (!usernameValid)
+    { 
+        Console.Write("Username is not valid. It must contain at least 3 characters.");
+    }
+    if (!passwordValid)
+        Console.Write("Password is not valid. It must contain $,| or @ and be between 16 and 20 characters.");
+}
+
